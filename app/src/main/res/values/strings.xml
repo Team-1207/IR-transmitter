@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">IRTransmitter</string>
+
+    <string name="ir_found">ИК-порт доступен для демонстрации</string>
+    <string name="ir_not_found">
+ИК-порт не найден
+
+Демонстрация невозможна на этом устройстве
+    </string>
+    <string name="hello_button">Отправить приветственное сообщение</string>
+    <string name="random_button">Отправить случайное сообщение</string>
+    <string name="you_can">Вы можете</string>
+    <string name="you_can_continue">или набрать собственное сообщение, которое автоматически отправится</string>
+    <string name="enter_text">Введите сообщение</string>
 </resources>

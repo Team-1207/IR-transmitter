@@ -2,12 +2,14 @@ package ru.shemplo.irtransmitter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.pm.PackageManager;
 import android.hardware.ConsumerIrManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,14 +17,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class TransmitterActivity extends AppCompatActivity {
-
     private static final int PRECISION = 300;
-
     private ConsumerIrManager irManager;
-
-    //public static int [] POWER = {9000, 4450, 550, 600, 500, 600, 550, 600, 550, 550, 550, 600, 500, 600, 550, 1700, 550, 550, 550, 600, 550, 550, 550, 600, 550, 550, 550, 600, 550, 550, 550, 1700, 550, 600, 550, 1700, 550, 550, 550, 1700, 550, 1700, 550, 550, 550, 600, 550, 1700, 550, 550, 550, 600, 550, 1650, 600, 550, 550, 550, 600, 1650, 550, 1700, 550, 600, 550, 1700, 550};
-    public static int [] POWER = {200, 400, 200, 200, 200, 400, 400, 400, 50};
-
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -31,9 +27,28 @@ public class TransmitterActivity extends AppCompatActivity {
         TextView noIRText = findViewById (R.id.no_ir_text);
         LinearLayout IRLayout = findViewById (R.id.ir_layout);
 
-        Button powerButton = findViewById (R.id.power_button);
-        powerButton.setOnClickListener (v -> transmit ("Hello, world! This is a small step of big thing".getBytes (StandardCharsets.UTF_8)));
+        Button helloButton = findViewById (R.id.hello_button);
+        helloButton.setOnClickListener (v -> transmit ("Hello, world! This is a small step of big thing".getBytes (StandardCharsets.UTF_8)));
         //powerButton.setOnClickListener (v -> transmit ("aaaaaaba".getBytes (StandardCharsets.UTF_8)));
+
+        Button randomButton = findViewById (R.id.random_button);
+        randomButton.setOnClickListener (v -> transmit ("....".getBytes (StandardCharsets.UTF_8)));
+
+        EditText inputTextField = findViewById (R.id.text_input_field);
+        inputTextField.addTextChangedListener (new TextWatcher() {
+
+            @Override
+            public void onTextChanged (CharSequence s, int start, int before, int count) {
+                transmit (s.toString ().getBytes (StandardCharsets.UTF_8));
+            }
+
+            @Override
+            public void beforeTextChanged (CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void afterTextChanged (Editable s) {}
+
+        });
 
         irManager = getSystemService (ConsumerIrManager.class);
         noIRText.setVisibility (irManager.hasIrEmitter () ? View.GONE : View.VISIBLE);

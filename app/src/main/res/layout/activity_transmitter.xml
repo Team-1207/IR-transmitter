@@ -10,7 +10,9 @@
         android:id="@+id/no_ir_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No IR transmitter found"
+        android:gravity="center"
+        android:text="@string/ir_not_found"
+        android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,15 +31,49 @@
 
         <TextView
             android:id="@+id/ir_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="IR transmitter found" />
-
-        <Button
-            android:id="@+id/power_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Power" />
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:text="@string/ir_found"
+            android:textColor="@color/teal_700" />
+
+        <TextView
+            android:id="@+id/you_can_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/you_can" />
+
+        <Button
+            android:id="@+id/hello_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_button" />
+
+        <Button
+            android:id="@+id/random_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/random_button" />
+
+        <TextView
+            android:id="@+id/you_can_continue_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/you_can_continue" />
+
+        <EditText
+            android:id="@+id/text_input_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="none"
+            android:ems="10"
+            android:hint="@string/enter_text"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
