@@ -58,6 +58,14 @@
             android:text="@string/random_button" />
 
         <TextView
+            android:id="@+id/random_message_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/teal_700"
+            android:textStyle="italic" />
+
+        <TextView
             android:id="@+id/you_can_continue_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

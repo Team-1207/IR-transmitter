@@ -2,6 +2,7 @@ package ru.shemplo.irtransmitter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.hardware.ConsumerIrManager;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,11 +16,13 @@ import android.widget.TextView;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Random;
 
 public class TransmitterActivity extends AppCompatActivity {
     private static final int PRECISION = 300;
     private ConsumerIrManager irManager;
     @Override
+    @SuppressLint ("SetTextI18n")
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_transmitter);
@@ -29,10 +32,14 @@ public class TransmitterActivity extends AppCompatActivity {
 
         Button helloButton = findViewById (R.id.hello_button);
         helloButton.setOnClickListener (v -> transmit ("Hello, world! This is a small step of big thing".getBytes (StandardCharsets.UTF_8)));
-        //powerButton.setOnClickListener (v -> transmit ("aaaaaaba".getBytes (StandardCharsets.UTF_8)));
 
         Button randomButton = findViewById (R.id.random_button);
-        randomButton.setOnClickListener (v -> transmit ("....".getBytes (StandardCharsets.UTF_8)));
+        TextView randomMessageText = findViewById (R.id.random_message_text);
+        randomButton.setOnClickListener (v -> {
+            String number = String.valueOf (new Random ().nextInt ());
+            transmit (number.getBytes (StandardCharsets.UTF_8));
+            randomMessageText.setText ("(случайное сообщение: " + number + ")");
+        });
 
         EditText inputTextField = findViewById (R.id.text_input_field);
         inputTextField.addTextChangedListener (new TextWatcher() {
